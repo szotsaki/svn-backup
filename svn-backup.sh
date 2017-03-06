@@ -23,7 +23,7 @@ for repo in "$repo_dir"/*; do
     revision=$($svnlook youngest "$repo")
     target="$backup_dir/$name-$revision.xz"
     if [ ! -e "$target" ]; then
-        rm -f "$backup_dir/$name-*.xz"
+        rm -f "$backup_dir/$name"-*.xz
         nice $svnadmin dump --deltas --quiet "$repo" | xz --compress --stdout -9 --extreme > "$target"
     fi
 done
